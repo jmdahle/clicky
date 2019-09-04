@@ -2,17 +2,15 @@ import React from 'react';
 import './style.css';
 
 class Score extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            isVisible: true
-        }
+    state = {
+        score: 0,
+        hiscore: 0
     }
 
     render() {
         return(
             <div className='score'>
-                Score: | Hi Score: 
+                Score: {this.state.score}| Hi Score: {this.state.hiscore}
             </div>
         );
     }

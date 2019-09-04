@@ -2,20 +2,21 @@ import React from 'react';
 import './style.css';
 
 class GameCard extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            isVisible: true
-        }
+    state = {
+        beenClicked: false
     }
 
     handleClick() {
-        console.log('clicked')
+        // if beenClicked, you lose
+        this.state.beenClicked ? console.log('game over') : console.log('increment score');
+        // set beenClicked to true
+        this.setState({ beenClicked: true });
     }
-    render() {
+
+    render () {
         return (
-            <div id={this.props.item.key} className='game-card'>
-                <img src={this.props.item.imgsrc} alt='' onClick={this.handleClick}/>
+            <div id={this.props.card.key} className='game-card'>
+                <img src={this.props.card.imgsrc} alt='' onClick={this.handleClick.bind(this)}/>
             </div>
         );
     }
