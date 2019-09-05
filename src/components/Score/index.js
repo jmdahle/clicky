@@ -2,16 +2,11 @@ import React from 'react';
 import './style.css';
 
 class Score extends React.Component {
-    state = {
-        score: 0,
-        hiscore: 0
-    }
-
     render() {
         return(
-            <div className='score'>
-                Score: {this.state.score}| Hi Score: {this.state.hiscore}
-            </div>
+            <span className='score'>
+                Score: {this.props.score}&nbsp;&nbsp;|&nbsp;&nbsp;Hi Score: {this.props.hiscore}
+            </span>
         );
     }
 }
