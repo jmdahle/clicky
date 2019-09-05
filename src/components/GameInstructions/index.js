@@ -12,7 +12,7 @@ class GameInstructions extends React.Component {
                     <button 
                         type='button' 
                         className='btn btn-primary'
-                        onClick={() => this.props.exitInstructions()}
+                        onClick={this.props.exitInstructions}
                     >Exit Instructions</button>
                 </div>
             );
