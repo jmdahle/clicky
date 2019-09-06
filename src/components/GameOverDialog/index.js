@@ -6,8 +6,8 @@ class GameOverDialog extends React.Component {
         if (this.props.gameover === 1) {
             return (
                 <div className='gameover'>
-                    <h3>Game Over!</h3>
-                    <p>Your final score was {this.props.score}.</p>
+                    <h3>{this.props.gameoverMessage}</h3>
+                    <p>Your final score was {this.props.score} out of a total possible {this.props.maxscore}.</p>
                     <p>Click 'Restart' button to start a new game.</p>
                     <button 
                         type='button' 

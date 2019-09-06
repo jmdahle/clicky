@@ -15,7 +15,9 @@ class GameBoard extends React.Component {
         instructions: 1, //0=hide instructions; 1=show instructions
         score: 0,
         hiscore: 0,
-        gameover: 0 // 0=in progress; 1=game over
+        maxscore: 12,
+        gameover: 0, // 0=in progress; 1=game over
+        gameoverMessage: 'Game Over!'
     }
 
     shuffle = array => {
@@ -35,15 +37,15 @@ class GameBoard extends React.Component {
             // check if that ID has been clicked
             // if yes, end the game; if no, score a point
             let newCardsClicked = this.state.cardsClicked;
-            newCardsClicked.indexOf(id) > -1 ? this.endGame() : this.scorePoint(id)
+            newCardsClicked.indexOf(id) > -1 ? this.endGame('Game Over!') : this.scorePoint(id)
             // add the card to the cards clicked array
             newCardsClicked.push(id);
             this.setState( { cardsClicked: newCardsClicked })
         }
     }
 
-    endGame = () => {
-        this.setState( { gameover: 1, suspendGame: 1 } );
+    endGame = (msg) => {
+        this.setState( { gameover: 1, suspendGame: 1, gameoverMessage: msg } );
     }
 
     showInstructions = () => {
@@ -61,16 +63,23 @@ class GameBoard extends React.Component {
         if (currentScore > this.state.hiscore) {
             this.setState( { hiscore: currentScore } );
         }
+        // did the user reach the maxscore?  If so, end game now
+        if (currentScore === this.state.maxscore) {
+            this.endGame('You WIN!');
+        }
         // and shuffle the cards
         this.shuffle(gameCards);
     }
 
     componentDidMount = () => {
+        // update state with maximum number of cards
+        let maxcards = gameCards.length;
+        this.setState( { maxscore: maxcards } );
         this.shuffle(gameCards);
     }
     
     restartGame = () => {
-        // re-set to beginning state (except cards and hiscore)
+        // re-set to beginning state (except cards, hiscore, and maxscore)
         this.setState( {
             cardsClicked: [],
             score: 0,
@@ -87,19 +96,21 @@ class GameBoard extends React.Component {
             <div className='gameboard'>
             <Wrapper>
                 <GameOverDialog 
-                    gameover={this.state.gameover} 
-                    restartGame={this.restartGame}
-                    score={this.state.score}
+                    gameover = {this.state.gameover}
+                    gameoverMessage = {this.state.gameoverMessage} 
+                    restartGame = {this.restartGame}
+                    score = {this.state.score}
+                    maxscore = {this.state.maxscore}
                 />
                 <GameHeader> 
                     <Score
-                        score={this.state.score}
-                        hiscore={this.state.hiscore}
+                        score = {this.state.score}
+                        hiscore = {this.state.hiscore}
                     />
                     <GameInstructions 
-                        instructions={this.state.instructions}
-                        exitInstructions={this.exitInstructions}
-                        showInstructions={this.showInstructions}
+                        instructions = {this.state.instructions}
+                        exitInstructions = {this.exitInstructions}
+                        showInstructions = {this.showInstructions}
                     />
                 </GameHeader>
                 {this.state.cardArray.map( card => (
@@ -107,7 +118,7 @@ class GameBoard extends React.Component {
                         id={card.id}
                         key={card.id} 
                         imgsrc={card.imgsrc}
-                        clickCard={this.clickCard}
+                        clickCard = {this.clickCard}
                     /> 
                 ))}
             </Wrapper>
