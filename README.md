@@ -26,10 +26,17 @@ The Clicky app relies on Node.js to provide the web server, React to provide the
     * Suspends the game (cannot click image cards) while a dialog is open
     * Immediate ends game when player hits the max score
     * GameOverDialog handles both win and lose conditions (passed details from GameBoard)
-4. IMPORANT - the `master`` branch on github is the COMPILED verison of the code (requirement to push to githubpages);  the `rawcode` branch is the3 ORIGNAL CODE.
+4. IMPORANT - the `master` branch on github is the COMPILED verison of the code (requirement to push to githubpages);  the `rawcode` branch is the3 ORIGNAL CODE.
     * Changes to code should be made in `rawcode` first and added/committed/pushed
+        * In branch `rawcode`:
+        * _`> git add -A`_
+        * _`> git commit -a -m 'memo - ready to deploy'`_
+        * _`> git push origin rawcode`_
     * Changes are copied into master using `git merge rawcode`
+        * _`> git checkout master`_
+        * _`> git merge rawcode`
     * Changes are compiled and deployed by running `npm run deploy` (from the master branch)
+        * _`> npm run deploy`
 
 ### Resources
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
