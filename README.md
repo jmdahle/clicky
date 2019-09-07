@@ -1,7 +1,7 @@
 ## Clicky Game
 
 ### About
-Clicky is a game written using React compnents.  The Clicky game board has a number of image cards.  The player's goal is to click on each image card one time.  A point is awarded for the first time any image card is clicked.  But when an image card is clicked a second time, the game ends.  The game also ends if the player clicks all image cards (achieves the maximum score).  Before each turn, the game board is shuffled, significantly increasing the difficulty of winning the game!
+Clicky is a memory game written using React components.  The Clicky game board has a number of image cards.  The player's goal is to click on each image card one time.  A point is awarded for the first time any image card is clicked.  But when an image card is clicked a second time, the game ends.  The game also ends if the player clicks all image cards (achieves the maximum score).  Before each turn, the game board is shuffled, significantly increasing the difficulty of winning the game!
 
 ### Installation
 The Clicky app relies on Node.js to provide the web server, React to provide the renderer (React-DOM) and component architechture (React), and scripts to run, build, and test the React app.  See the Technical Notes section for information about the create-react-app package used to initialize this project. 
